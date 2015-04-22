@@ -10,23 +10,23 @@
     {
         private class BitArray2
         {
-            public BitArray Arr;
+            private readonly BitArray _arr;
 
             public BitArray2(int len)
             {
-                Arr = new BitArray(len);
+                _arr = new BitArray(len);
             }
 
             public bool this[int num]
             {
-                get { return Arr[num]; }
-                set { Arr[num] = value; }
+                get { return _arr[num]; }
+                set { _arr[num] = value; }
             }
 
             public override string ToString()
             {
                 var sb = new StringBuilder();
-                foreach (bool b in Arr)
+                foreach (bool b in _arr)
                 {
                     sb.Append(b ? 'b' : 'a');
                 }
@@ -40,6 +40,7 @@
             var strArr = Console.ReadLine().ToCharArray();
             var bitArr = new BitArray2(len);
             var scratchArr = new BitArray2(len);
+            var midArr = new BitArray2(len);
             for (int index = 0; index < strArr.Length; index++)
             {
                 var ch = strArr[index];
@@ -76,10 +77,20 @@
                         {
                             scratchArr[i] = bitArr[l1 + i];
                         }
+                        // save the middle part in midArr starting at index 0
+                        for (int i = r1 + 1; i < l2; i++)
+                        {
+                            midArr[i - r1 - 1] = bitArr[i];
+                        }
                         // overwrite first substring with second substring
                         for (int i = 0; i < sLen2; i++)
                         {
                             bitArr[l1 + i] = bitArr[l2 + i];
+                        }
+                        // overwrite the mid substring after the first substring
+                        for (int i = l1 + sLen2; i < dif + l1 + sLen2; i++)
+                        {
+                            bitArr[i] = midArr[i - l1 - sLen2];
                         }
                         // overwrite second substring with first substring saved in scratchArr starting at index 0
                         for (int i = 0; i < sLen1; i++)
