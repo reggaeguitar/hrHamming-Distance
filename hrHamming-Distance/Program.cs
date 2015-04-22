@@ -4,43 +4,16 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     class Program
     {
-        private class BitArray2
-        {
-            private readonly BitArray _arr;
-
-            public BitArray2(int len)
-            {
-                _arr = new BitArray(len);
-            }
-
-            public bool this[int num]
-            {
-                get { return _arr[num]; }
-                set { _arr[num] = value; }
-            }
-
-            public override string ToString()
-            {
-                var sb = new StringBuilder();
-                foreach (bool b in _arr)
-                {
-                    sb.Append(b ? 'b' : 'a');
-                }
-                return sb.ToString();
-            }
-        }
-
         static void Main()
         { // a = false, b = true
             var len = Int32.Parse(Console.ReadLine());
             var strArr = Console.ReadLine().ToCharArray();
-            var bitArr = new BitArray2(len);
-            var scratchArr = new BitArray2(len);
-            var midArr = new BitArray2(len);
+            var bitArr = new BitArray(len);
+            var scratchArr = new BitArray(len);
+            var midArr = new BitArray(len);
             for (int index = 0; index < strArr.Length; index++)
             {
                 var ch = strArr[index];
@@ -141,7 +114,6 @@
                         Console.WriteLine(dist);
                         break;
                 }
-                Console.WriteLine(bitArr); // crit del
             }
         }
     }
