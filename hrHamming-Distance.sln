@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hrHamming-Distance", "hrHamming-Distance\hrHamming-Distance.csproj", "{594B500A-D77E-4BB3-A6D5-C84595829114}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hrHamming-DistanceCPP", "hrHamming-DistanceCPP\hrHamming-DistanceCPP.vcxproj", "{8AA91B2F-1D32-4F92-8936-7E962F150485}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCaseAnalyzer", "TestCaseAnalyzer\TestCaseAnalyzer.csproj", "{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,16 @@ Global
 		{8AA91B2F-1D32-4F92-8936-7E962F150485}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{8AA91B2F-1D32-4F92-8936-7E962F150485}.Release|Win32.ActiveCfg = Release|Win32
 		{8AA91B2F-1D32-4F92-8936-7E962F150485}.Release|Win32.Build.0 = Release|Win32
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F9A6D43F-167E-425F-A5EB-E6E31C39D1FA}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
