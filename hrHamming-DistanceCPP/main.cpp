@@ -2,7 +2,10 @@
 #include <bitset>
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <vector>
+#include <stack>
+#include <iterator>
 
 using namespace std;
 
@@ -12,12 +15,13 @@ int main()
 { // a = false, b = true
 	int len;
 	scanf("%d", &len);
+	getchar();
 	string str;
 	getline(cin, str);
 	bitset<MAX_N> bitArr;
 	bitset<MAX_N> scratchArr;
 	bitset<MAX_N> midArr;
-	for (int index = 0; index < str.size(); index++)
+	for (unsigned int index = 0; index < str.size(); index++)
 	{
 		auto ch = str[index];
 		if (ch == 'b')
@@ -27,28 +31,39 @@ int main()
 	}
 	int numQueries;
 	scanf("%d", &numQueries);
+	getchar();
 	while (numQueries-- > 0)
 	{
-		var args = Console.ReadLine().Split(' ').ToArray();
+		string line;
+		getline(cin, line);
+		istringstream iss(line);
+		vector<string> args{ istream_iterator<string>{iss},
+			istream_iterator<string>{} };
+
+		stack<bool> s; // stack will have ((rr - lr) + 1) elements
+		int l, r, l1, r1, sLen1, l2, r2, sLen2, dif, lr, rr, lrCopy, rw, lw;
+		bool value;
+		char outputChar;
+
 		switch (args[0][0])
 		{
 		case 'C':
-			var l = Int32.Parse(args[1]) - 1;
-			var r = Int32.Parse(args[2]) - 1;
-			var value = args[3][0] == 'b';
+			l = stoi(args[1]) - 1;
+			r = stoi(args[2]) - 1;
+			value = args[3][0] == 'b';
 			for (int i = l; i <= r; ++i)
 			{
 				bitArr[i] = value;
 			}
 			break;
 		case 'S':
-			var l1 = Int32.Parse(args[1]) - 1;
-			var r1 = Int32.Parse(args[2]) - 1;
-			var sLen1 = (r1 - l1) + 1;
-			var l2 = Int32.Parse(args[3]) - 1;
-			var r2 = Int32.Parse(args[4]) - 1;
-			var sLen2 = (r2 - l2) + 1;
-			var dif = l2 - r1 - 1;
+			l1 = stoi(args[1]) - 1;
+			r1 = stoi(args[2]) - 1;
+			sLen1 = (r1 - l1) + 1;
+			l2 = stoi(args[3]) - 1;
+			r2 = stoi(args[4]) - 1;
+			sLen2 = (r2 - l2) + 1;
+			dif = l2 - r1 - 1;
 			// save first substring in scratchArr starting at index 0
 			for (int i = 0; i < sLen1; i++)
 			{
@@ -76,38 +91,39 @@ int main()
 			}
 			break;
 		case 'R':
-			var lr = Int32.Parse(args[1]) - 1;
-			var rr = Int32.Parse(args[2]) - 1;
-			var stack = new Stack<bool>((rr - lr) + 1);
-			var lrCopy = lr;
+			lr = stoi(args[1]) - 1;
+			rr = stoi(args[2]) - 1;
+			lrCopy = lr;
 			for (; lrCopy <= rr; ++lrCopy)
 			{
-				stack.Push(bitArr[lrCopy]);
+				s.push(bitArr[lrCopy]);
 			}
 			for (; lr <= rr; ++lr)
 			{
-				bitArr[lr] = stack.Pop();
+				bitArr[lr] = s.top();
+				s.pop();
 			}
 			break;
 		case 'W':
-			var lw = Int32.Parse(args[1]) - 1;
-			var rw = Int32.Parse(args[2]) - 1;
+			lw = stoi(args[1]) - 1;
+			rw = stoi(args[2]) - 1;
 			for (; lw <= rw; ++lw)
 			{
-				Console.Write(bitArr[lw] ? 'b' : 'a');
+				outputChar = bitArr[lw] ? 'b' : 'a';
+				cout << outputChar;
 			}
-			Console.WriteLine();
+			cout << endl;
 			break;
 		case 'H':
 			int dist = 0;
-			var oneStart = Int32.Parse(args[1]) - 1;
-			var twoStart = Int32.Parse(args[2]) - 1;
+			int oneStart = stoi(args[1]) - 1;
+			int twoStart = stoi(args[2]) - 1;
 			if (oneStart == twoStart)
 			{
-				Console.WriteLine(0);
+				cout << "0" << endl;
 				break;
 			}
-			var lenH = Int32.Parse(args[3]);
+			int lenH = stoi(args[3]);
 			for (int i = 0; i < lenH; i++)
 			{
 				if (bitArr[oneStart + i] != bitArr[twoStart + i])
@@ -115,8 +131,9 @@ int main()
 					++dist;
 				}
 			}
-			Console.WriteLine(dist);
+			cout << dist << endl;
 			break;
 		}
 	}
+	return 0;
 }
