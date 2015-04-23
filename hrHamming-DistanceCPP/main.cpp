@@ -110,9 +110,9 @@ int main()
 			for (; lw <= rw; ++lw)
 			{
 				outputChar = bitArr[lw] ? 'b' : 'a';
-				cout << outputChar;
+				printf("%c", outputChar);
 			}
-			cout << endl;
+			printf("\n");
 			break;
 		case 'H':
 			int dist = 0;
@@ -120,7 +120,7 @@ int main()
 			int twoStart = stoi(args[2]) - 1;
 			if (oneStart == twoStart)
 			{
-				cout << "0" << endl;
+				printf("0\n");
 				break;
 			}
 			int lenH = stoi(args[3]);
@@ -131,7 +131,7 @@ int main()
 					++dist;
 				}
 			}
-			cout << dist << endl;
+			printf("%d\n", dist);
 			break;
 		}
 	}
